@@ -3,43 +3,76 @@
 
     <PreferenceCategory
         android:key="prefcrime"
-        android:icon="@drawable/logo"
         android:title="Crime Types" >
-        <CheckBoxPreference
-            android:icon="@drawable/murder"
-            android:key="prefChkMurder"
-            android:summary="Show Murder Crime"
-            android:title="Murder" />
         <CheckBoxPreference
             android:icon="@drawable/carnapping"
             android:key="prefChkCarnapping"
             android:summary="Show Carnapping Crime"
             android:title="Carnapping" />
         <CheckBoxPreference
+            android:icon="@drawable/drugs"
+            android:key="prefChkDrugs"
+            android:summary="Show Drugs Crime"
+            android:title="Drugs" />
+        <CheckBoxPreference
+            android:icon="@drawable/explosives"
+            android:key="prefChkExplosives"
+            android:summary="Show Explosives Crime"
+            android:title="Explosives" />
+        <CheckBoxPreference
+            android:icon="@drawable/firearms"
+            android:key="prefChkFirearms"
+            android:summary="Show Fire Arms Crime"
+            android:title="Fire Arms" />
+        <CheckBoxPreference
             android:icon="@drawable/homicide"
             android:key="prefChkHomicide"
             android:summary="Show Homicide Crime"
-            android:title="Homicider" />
+            android:title="Homicide" />
         <CheckBoxPreference
-            android:icon="@drawable/theft"
-            android:key="prefChkTheft"
-            android:summary="Show Theft Crime"
-            android:title="Theft" />
+            android:icon="@drawable/kidnapping"
+            android:key="prefChkKidnapping"
+            android:summary="Show Kidnapping Crime"
+            android:title="Kidnapping" />
+        <CheckBoxPreference
+            android:icon="@drawable/murder"
+            android:key="prefChkMurder"
+            android:summary="Show Murder Crime"
+            android:title="Murder" />
+        <CheckBoxPreference
+            android:icon="@drawable/parricide"
+            android:key="prefChkParricide"
+            android:summary="Show Parricide Crime"
+            android:title="Parricide" />
         <CheckBoxPreference
             android:icon="@drawable/physicalinjury"
             android:key="prefChkPhysicalinjury"
-            android:summary="Show Physicalinjury Crime"
-            android:title="Physicalinhury" />
+            android:summary="Show Physical Injury Crime"
+            android:title="Physical Injury" />
+        <CheckBoxPreference
+            android:icon="@drawable/rape"
+            android:key="prefChkRape"
+            android:summary="Show Rape Crime"
+            android:title="Rape" />
         <CheckBoxPreference
             android:icon="@drawable/robbery"
             android:key="prefChkRobbery"
             android:summary="Show Robbery Crime"
             android:title="Robbery" />
         <CheckBoxPreference
-            android:icon="@drawable/rape"
-            android:key="prefChkRape"
-            android:summary="Show Rape Crime"
-            android:title="Rape" />
+            android:icon="@drawable/theft"
+            android:key="prefChkTheft"
+            android:summary="Show Theft Crime"
+            android:title="Theft" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="prefPolice"
+        android:title="Police Station" >
+        <CheckBoxPreference
+            android:icon="@drawable/police"
+            android:key="prefChkPolice"
+            android:summary="Show Police Station"
+            android:title="Police Station" />
     </PreferenceCategory>
 
 </PreferenceScreen>

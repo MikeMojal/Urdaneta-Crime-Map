@@ -1,5 +1,7 @@
 package edu.ucuccs.urdanetacrimemap;
 
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.SearchManager;
@@ -19,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,15 +35,18 @@ import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.ui.IconGenerator;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class Map extends Fragment {
 	// implements LoaderCallbacks<Cursor>
 
 	public LatLng URDANETA = new LatLng(15.9757835, 120.5705031);
 	private static View view;
-//	private MenuItem refreshMenuItem;
-	boolean a, b, c, d, e, f, g;
+	// private MenuItem refreshMenuItem;
+	boolean a, b, c, d, e, f, g, h, i, j, k, l, m;
 	GroundOverlay groundOverlay;
 	SharedPreferences pref;
 	GoogleMap GMap;
@@ -132,7 +139,50 @@ public class Map extends Fragment {
 		searchView.setSearchableInfo(searchManager
 				.getSearchableInfo(getActivity().getComponentName()));
 		searchView.setQueryHint("Search Barangay");
+		searchView.setOnQueryTextListener(new OnQueryTextListener() {
 
+			@Override
+			public boolean onQueryTextChange(String query) {
+
+				if (query.equals("Anonas")) {
+
+					Toast.makeText(getActivity(), "ANONAS", Toast.LENGTH_LONG)
+							.show();
+				} else if (query.equals("")) {
+
+				}
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+		});
+
+	}
+
+	public void populate() {
+		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("CrimeArea");
+		query.whereEqualTo("barangay", "Anons");
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> listahan, ParseException arg1) {
+				for (int i = 0; i < listahan.size(); i++) {
+					Toast.makeText(
+							getActivity(),
+							listahan.get(i).getParseGeoPoint("barangay")
+									.getLatitude()
+									+ "", Toast.LENGTH_LONG).show();
+				}
+
+			}
+
+		});
 	}
 
 	@Override
@@ -173,9 +223,11 @@ public class Map extends Fragment {
 		GMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 
-		GMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		// GMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		// CameraPosition cam = new CameraPosition.Builder().target(URDANETA)
+		// .zoom(14).bearing(50).tilt(30).build();
 		CameraPosition cam = new CameraPosition.Builder().target(URDANETA)
-				.zoom(12).bearing(50).tilt(30).build();
+				.zoom(14).build();
 		GMap.moveCamera(CameraUpdateFactory.newCameraPosition(cam));
 		BitmapDescriptor image = BitmapDescriptorFactory
 				.fromResource(R.drawable.logo);
@@ -183,90 +235,99 @@ public class Map extends Fragment {
 		GMap.addGroundOverlay(new GroundOverlayOptions().image(image)
 				.position(URDANETA, width, height).transparency((float) 0.8));
 
-		IconGenerator iconFactory = new IconGenerator(getActivity());
-		
-		iconFactory.setStyle(IconGenerator.STYLE_GREEN);
-		addIcon(iconFactory, "San Vicente", new LatLng(15.9782426, 120.5715607));
-		
-		iconFactory.setStyle(IconGenerator.STYLE_BLUE);
-		addIcon(iconFactory, "Labit Proper",
-				new LatLng(15.9532486, 120.5253162));
-		
-		iconFactory.setStyle(IconGenerator.STYLE_RED);
-		addIcon(iconFactory, "Labit West", new LatLng(15.9584046, 120.5206084));
-		
-		iconFactory.setStyle(IconGenerator.STYLE_ORANGE);
-		addIcon(iconFactory, "Cabaruan", new LatLng(15.9458491, 120.5247965));
-		
-		iconFactory.setStyle(IconGenerator.STYLE_PURPLE);
-		addIcon(iconFactory, "Oltama", new LatLng(15.9491914, 120.5061713));
-
-		iconFactory.setStyle(IconGenerator.STYLE_WHITE);
-		addIcon(iconFactory, "Sugcong", new LatLng(15.9388908, 120.5268028));
-		
-		iconFactory.setStyle(IconGenerator.STYLE_BLUE);
-		addIcon(iconFactory, "Catablan", new LatLng(15.9688731, 120.5000988));
-
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		a = pref.getBoolean("prefChkMurder", false);
-		b = pref.getBoolean("prefChkCarnapping", false);
-		c = pref.getBoolean("prefChkHomicide", false);
-		d = pref.getBoolean("prefChkTheft", false);
-		e = pref.getBoolean("prefChkPhysicalinjury", false);
-		f = pref.getBoolean("prefChkRape", false);
-		g = pref.getBoolean("prefChkRobbery", false);
+		a = pref.getBoolean("prefChkCarnapping", false);
+		b = pref.getBoolean("prefChkDrugs", false);
+		c = pref.getBoolean("prefChkExplosives", false);
+		d = pref.getBoolean("prefChkFirearms", false);
+		e = pref.getBoolean("prefChkHomicide", false);
+		f = pref.getBoolean("prefChkKidnapping", false);
+		g = pref.getBoolean("prefChkMurder", false);
+		h = pref.getBoolean("prefChkParricide", false);
+		i = pref.getBoolean("prefChkPolice", false);
+		j = pref.getBoolean("prefChkPhysicalinjury", false);
+		k = pref.getBoolean("prefChkRape", false);
+		l = pref.getBoolean("prefChkRobbery", false);
+		m = pref.getBoolean("prefChkTheft", false);
 		if (a == true) {
-			Murder();
+			Carnap();
+
 		} else {
 			a = false;
 
 		}
 		if (b == true) {
-			Carnap();
+			Drug();
 		} else {
 			b = false;
 
 		}
 		if (c == true) {
-			Homicide();
+			Explosive();
 		} else {
 			c = false;
 
 		}
 		if (d == true) {
-			Theft();
+			Fire();
 		} else {
 			d = false;
 
 		}
 		if (e == true) {
-			Physical();
+			Homicide();
 		} else {
 			e = false;
 
 		}
 		if (f == true) {
-			Rape();
+			Kidnap();
 		} else {
 			f = false;
 
 		}
 		if (g == true) {
-			Roberry();
+			Murder();
 		} else {
 			g = false;
 
 		}
-	}
+		if (h == true) {
 
-	private void addIcon(IconGenerator iconFactory, String text, LatLng position) {
+		} else {
+			h = false;
+			Paracide();
+		}
+		if (i == true) {
+			Police();
+		} else {
+			i = false;
 
-		MarkerOptions markerOptions = new MarkerOptions()
-				.icon(BitmapDescriptorFactory.fromBitmap(iconFactory
-						.makeIcon(text))).position(position)
-				.anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV());
+		}
+		if (j == true) {
+			Physical();
+		} else {
+			j = false;
 
-		GMap.addMarker(markerOptions);
+		}
+		if (k == true) {
+			Rape();
+		} else {
+			k = false;
+
+		}
+		if (l == true) {
+			Roberry();
+		} else {
+			l = false;
+
+		}
+		if (m == true) {
+			Theft();
+		} else {
+			m = false;
+
+		}
 
 	}
 
@@ -275,6 +336,43 @@ public class Map extends Fragment {
 		startActivity(i);
 		getActivity().overridePendingTransition(android.R.anim.slide_in_left,
 				android.R.anim.slide_out_right);
+	}
+
+	public void Carnap() {
+		Marker mike = GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9741025, 120.5708826)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.carnapping)));
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9731451, 120.5611968)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.carnapping)));
+		mike.setTitle("Carnapping /n violence is:");
+
+	}
+
+	public void Drug() {
+
+	}
+
+	public void Explosive() {
+
+	}
+
+	public void Fire() {
+
+	}
+
+	public void Kidnap() {
+
+	}
+
+	public void Homicide() {
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.97895, 120.5661855)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.homicide)));
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9784735, 120.5645754)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.homicide)));
+
 	}
 
 	public void Murder() {
@@ -287,53 +385,11 @@ public class Map extends Fragment {
 
 	}
 
-	public void Carnap() {
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9741025, 120.5708826)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.carnapping)));
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9731451, 120.5611968)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.carnapping)));
+	public void Paracide() {
 
 	}
 
-	public void Roberry() {
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9729014, 120.5635558)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9718257, 120.5669392)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
-
-	}
-
-	public void Rape() {
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9743509, 120.5565057)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.rape)));
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9725317, 120.5576579)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.rape)));
-
-	}
-
-	public void Theft() {
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9491914, 120.5061713)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.theft)));
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9584046, 120.5206080)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.theft)));
-
-	}
-
-	public void Homicide() {
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.97895, 120.5661855)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.homicide)));
-		GMap.addMarker(new MarkerOptions().position(
-				new LatLng(15.9784735, 120.5645754)).icon(
-				BitmapDescriptorFactory.fromResource(R.drawable.homicide)));
+	public void Police() {
 
 	}
 
@@ -348,108 +404,179 @@ public class Map extends Fragment {
 						.fromResource(R.drawable.physicalinjury)));
 
 	}
-	// private class SyncData extends AsyncTask<String, Void, String> {
-	// @Override
-	// protected void onPreExecute() {
-	// // set the progress bar view
-	// refreshMenuItem.setActionView(R.layout.action_progressbar);
-	//
-	// refreshMenuItem.expandActionView();
-	// }
-	//
-	// @Override
-	// protected String doInBackground(String... params) {
-	//
-	// try {
-	// Thread.sleep(3000);
-	// } catch (InterruptedException e) {
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
-	//
-	// @Override
-	// protected void onPostExecute(String result) {
-	// refreshMenuItem.collapseActionView();
-	// // remove the progress bar view
-	// refreshMenuItem.setActionView(null);
-	// }
-	// };
 
-	// private void handleIntent(Intent intent) {
-	// if (intent.getAction().equals(Intent.ACTION_SEARCH)) {
-	// doSearch(intent.getStringExtra(SearchManager.QUERY));
-	// } else if (intent.getAction().equals(Intent.ACTION_VIEW)) {
-	// getPlace(intent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
-	// }
-	// }
-	//
-	// protected void onNewIntent(Intent intent) {
-	// super.startActivity(intent);
-	// handleIntent(intent);
-	// }
-	//
-	// private void getPlace(String query) {
-	// // TODO Auto-generated method stub
-	// Bundle data = new Bundle();
-	// data.putString("query", query);
-	// }
-	//
-	// private void doSearch(String query) {
-	// // TODO Auto-generated method stub
-	// Bundle data = new Bundle();
-	// data.putString("query", query);
-	// }
-	//
-	// @Override
-	// public android.support.v4.content.Loader<Cursor> onCreateLoader(int arg0,
-	// Bundle query) {
-	// CursorLoader cLoader = null;
-	//
-	// if (arg0 == 0)
-	// cLoader = new CursorLoader(getActivity().getBaseContext(),
-	// PlaceProvider.SEARCH_URI, null, null,
-	// new String[] { query.getString("query") }, null);
-	// else if (arg0 == 1)
-	// cLoader = new CursorLoader(getActivity().getBaseContext(),
-	// PlaceProvider.DETAILS_URI, null, null,
-	// new String[] { query.getString("query") }, null);
-	// return cLoader;
-	//
-	// }
-	//
-	// @Override
-	// public void onLoadFinished(android.support.v4.content.Loader<Cursor>
-	// arg0,
-	// Cursor c) {
-	// showLocations(c);
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// @Override
-	// public void onLoaderReset(android.support.v4.content.Loader<Cursor> arg0)
-	// {
-	// // TODO Auto-generated method stub
-	// }
-	//
-	// private void showLocations(Cursor c) {
-	// MarkerOptions markerOptions = null;
-	// LatLng position = null;
-	// GMap.clear();
-	// while (c.moveToNext()) {
-	// markerOptions = new MarkerOptions();
-	// position = new LatLng(Double.parseDouble(c.getString(1)),
-	// Double.parseDouble(c.getString(2)));
-	// markerOptions.position(position);
-	// markerOptions.title(c.getString(0));
-	// GMap.addMarker(markerOptions);
-	// }
-	// if (position != null) {
-	// CameraUpdate cameraPosition = CameraUpdateFactory
-	// .newLatLng(position);
-	// GMap.animateCamera(cameraPosition);
-	// }
-	// }
+	public void Rape() {
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9743509, 120.5565057)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.rape)));
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9725317, 120.5576579)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.rape)));
+
+	}
+
+	public void Roberry() {
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9729014, 120.5635558)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9718257, 120.5669392)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.robbery)));
+
+	}
+
+	public void Theft() {
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9491914, 120.5061713)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.theft)));
+		GMap.addMarker(new MarkerOptions().position(
+				new LatLng(15.9584046, 120.5206080)).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.theft)));
+
+	}
 
 }
+// IconGenerator iconFactory = new IconGenerator(getActivity());
+
+// iconFactory.setStyle(IconGenerator.STYLE_GREEN);
+// addIcon(iconFactory, "San Vicente", new LatLng(15.9782426,
+// 120.5715607));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_BLUE);
+// addIcon(iconFactory, "Labit Proper",
+// new LatLng(15.9532486, 120.5253162));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_RED);
+// addIcon(iconFactory, "Labit West", new LatLng(15.9584046,
+// 120.5206084));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_ORANGE);
+// addIcon(iconFactory, "Cabaruan", new LatLng(15.9458491,
+// 120.5247965));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_PURPLE);
+// addIcon(iconFactory, "Oltama", new LatLng(15.9491914, 120.5061713));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_WHITE);
+// addIcon(iconFactory, "Sugcong", new LatLng(15.9388908, 120.5268028));
+//
+// iconFactory.setStyle(IconGenerator.STYLE_BLUE);
+// addIcon(iconFactory, "Catablan", new LatLng(15.9688731,
+// 120.5000988));
+
+// private void addIcon(IconGenerator iconFactory, String text, LatLng
+// position) {
+//
+// MarkerOptions markerOptions = new MarkerOptions()
+// .icon(BitmapDescriptorFactory.fromBitmap(iconFactory
+// .makeIcon(text))).position(position)
+// .anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV());
+//
+// GMap.addMarker(markerOptions);
+//
+// }
+
+// private class SyncData extends AsyncTask<String, Void, String> {
+// @Override
+// protected void onPreExecute() {
+// // set the progress bar view
+// refreshMenuItem.setActionView(R.layout.action_progressbar);
+//
+// refreshMenuItem.expandActionView();
+// }
+//
+// @Override
+// protected String doInBackground(String... params) {
+//
+// try {
+// Thread.sleep(3000);
+// } catch (InterruptedException e) {
+// e.printStackTrace();
+// }
+// return null;
+// }
+//
+// @Override
+// protected void onPostExecute(String result) {
+// refreshMenuItem.collapseActionView();
+// // remove the progress bar view
+// refreshMenuItem.setActionView(null);
+// }
+// };
+
+// private void handleIntent(Intent intent) {
+// if (intent.getAction().equals(Intent.ACTION_SEARCH)) {
+// doSearch(intent.getStringExtra(SearchManager.QUERY));
+// } else if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+// getPlace(intent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
+// }
+// }
+//
+// protected void onNewIntent(Intent intent) {
+// super.startActivity(intent);
+// handleIntent(intent);
+// }
+//
+// private void getPlace(String query) {
+// // TODO Auto-generated method stub
+// Bundle data = new Bundle();
+// data.putString("query", query);
+// }
+//
+// private void doSearch(String query) {
+// // TODO Auto-generated method stub
+// Bundle data = new Bundle();
+// data.putString("query", query);
+// }
+//
+// @Override
+// public android.support.v4.content.Loader<Cursor> onCreateLoader(int arg0,
+// Bundle query) {
+// CursorLoader cLoader = null;
+//
+// if (arg0 == 0)
+// cLoader = new CursorLoader(getActivity().getBaseContext(),
+// PlaceProvider.SEARCH_URI, null, null,
+// new String[] { query.getString("query") }, null);
+// else if (arg0 == 1)
+// cLoader = new CursorLoader(getActivity().getBaseContext(),
+// PlaceProvider.DETAILS_URI, null, null,
+// new String[] { query.getString("query") }, null);
+// return cLoader;
+//
+// }
+//
+// @Override
+// public void onLoadFinished(android.support.v4.content.Loader<Cursor>
+// arg0,
+// Cursor c) {
+// showLocations(c);
+// // TODO Auto-generated method stub
+//
+// }
+//
+// @Override
+// public void onLoaderReset(android.support.v4.content.Loader<Cursor> arg0)
+// {
+// // TODO Auto-generated method stub
+// }
+//
+// private void showLocations(Cursor c) {
+// MarkerOptions markerOptions = null;
+// LatLng position = null;
+// GMap.clear();
+// while (c.moveToNext()) {
+// markerOptions = new MarkerOptions();
+// position = new LatLng(Double.parseDouble(c.getString(1)),
+// Double.parseDouble(c.getString(2)));
+// markerOptions.position(position);
+// markerOptions.title(c.getString(0));
+// GMap.addMarker(markerOptions);
+// }
+// if (position != null) {
+// CameraUpdate cameraPosition = CameraUpdateFactory
+// .newLatLng(position);
+// GMap.animateCamera(cameraPosition);
+// }
+// }
+

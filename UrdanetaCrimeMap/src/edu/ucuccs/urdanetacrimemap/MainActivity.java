@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
 		dataList = new ArrayList<DrawerItem>();
 		dataList.add(new DrawerItem("Home", R.drawable.shop));
-		dataList.add(new DrawerItem("Map", R.drawable.world));
+		dataList.add(new DrawerItem("Crime Map", R.drawable.world));
 		dataList.add(new DrawerItem("About", R.drawable.note));
 		dataList.add(new DrawerItem("Contact", R.drawable.phone));
 
@@ -169,7 +169,7 @@ public class MainActivity extends Activity {
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_search).setVisible(!drawerOpen);
 		menu.findItem(R.id.action_crime).setVisible(!drawerOpen);
-//		menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+		// menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

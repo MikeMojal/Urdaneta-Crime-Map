@@ -13,7 +13,4 @@
         android:showAsAction="ifRoom"
         android:title="@string/action_crime"/>
 
-    <!-- Refresh -->
-  
-
 </menu>
