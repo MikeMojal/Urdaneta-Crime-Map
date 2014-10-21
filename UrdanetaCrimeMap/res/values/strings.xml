@@ -32,5 +32,6 @@
     <string name="title_activity_crime">Crime</string>
     <string name="title_activity_barangay">Barangay</string>
     <string name="title_activity_search_result">SearchResult</string>
+    <string name="title_activity_statistics">Statistics</string>
 
 </resources>

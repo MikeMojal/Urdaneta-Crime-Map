@@ -28,7 +28,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/mike"
         android:label="@string/app_name"
         android:paddingLeft="10dp"
         android:screenOrientation="portrait"
@@ -72,7 +72,7 @@
         <activity
             android:name=".Crime"
             android:label="@string/title_activity_crime"
-            android:parentActivityName="edu.ucuccs.urdanetacrimemap.Map" >
+            android:parentActivityName=".Map" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.ucuccs.urdanetacrimemap.Map" />
@@ -89,6 +89,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".Statistics"
+            android:label="@string/title_activity_statistics" >
+        </activity>
     </application>
 
 </manifest>

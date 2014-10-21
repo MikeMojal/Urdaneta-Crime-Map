@@ -40,8 +40,9 @@ public class MainActivity extends Activity {
 		dataList = new ArrayList<DrawerItem>();
 		dataList.add(new DrawerItem("Home", R.drawable.shop));
 		dataList.add(new DrawerItem("Crime Map", R.drawable.world));
-		dataList.add(new DrawerItem("About", R.drawable.note));
-		dataList.add(new DrawerItem("Contact", R.drawable.phone));
+		dataList.add(new DrawerItem("About Us", R.drawable.note));
+		dataList.add(new DrawerItem("Contact Us", R.drawable.phone));
+		dataList.add(new DrawerItem("Crime Statistics", R.drawable.statistics));
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -98,6 +99,10 @@ public class MainActivity extends Activity {
 			break;
 		case 3:
 			fragment = new Contact();
+
+			break;
+		case 4:
+			fragment = new Statistics();
 
 			break;
 
@@ -167,9 +172,10 @@ public class MainActivity extends Activity {
 		// If the drawer is open, hide action items related to the content view
 
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_search).setVisible(!drawerOpen);
+		// menu.findItem(R.id.action_search).setVisible(!drawerOpen);
+		menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
 		menu.findItem(R.id.action_crime).setVisible(!drawerOpen);
-		// menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+
 		return super.onPrepareOptionsMenu(menu);
 	}
 

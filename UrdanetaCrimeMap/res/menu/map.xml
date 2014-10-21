@@ -2,15 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <item
-        android:id="@+id/action_search"
-        android:actionViewClass="android.widget.SearchView"
-        android:icon="@drawable/ic_action_search"
-        android:showAsAction="ifRoom"
-        android:title="@string/search_hint"/>
-    <item
         android:id="@+id/action_crime"
-        android:icon="@drawable/ic_action_location_found"
+        android:icon="@drawable/crimearea"
         android:showAsAction="ifRoom"
         android:title="@string/action_crime"/>
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
 
 </menu>
