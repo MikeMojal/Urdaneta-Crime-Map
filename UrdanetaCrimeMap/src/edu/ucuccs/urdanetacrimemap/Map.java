@@ -699,19 +699,19 @@ public class Map extends Fragment {
 				.position(URDANETA, width, height).transparency((float) 0.8));
 
 		pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		a = pref.getBoolean("prefChkCarnapping", true);
-		b = pref.getBoolean("prefChkDrugs", true);
-		c = pref.getBoolean("prefChkExplosives", true);
-		d = pref.getBoolean("prefChkFirearms", true);
-		e = pref.getBoolean("prefChkHomicide", true);
-		f = pref.getBoolean("prefChkKidnapping", true);
-		g = pref.getBoolean("prefChkMurder", true);
-		h = pref.getBoolean("prefChkParricide", true);
-		i = pref.getBoolean("prefChkPolice", true);
-		j = pref.getBoolean("prefChkPhysicalinjury", true);
-		k = pref.getBoolean("prefChkRape", true);
-		l = pref.getBoolean("prefChkRobbery", true);
-		m = pref.getBoolean("prefChkTheft", true);
+		a = pref.getBoolean("prefChkCarnapping", false);
+		b = pref.getBoolean("prefChkDrugs", false);
+		c = pref.getBoolean("prefChkExplosives", false);
+		d = pref.getBoolean("prefChkFirearms", false);
+		e = pref.getBoolean("prefChkHomicide", false);
+		f = pref.getBoolean("prefChkKidnapping", false);
+		g = pref.getBoolean("prefChkMurder", false);
+		h = pref.getBoolean("prefChkParricide", false);
+		i = pref.getBoolean("prefChkPolice", false);
+		j = pref.getBoolean("prefChkPhysicalinjury", false);
+		k = pref.getBoolean("prefChkRape", false);
+		l = pref.getBoolean("prefChkRobbery", false);
+		m = pref.getBoolean("prefChkTheft", false);
 		try {
 			if (a == true) {
 				Carnap();

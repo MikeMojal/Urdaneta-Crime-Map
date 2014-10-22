@@ -142,10 +142,10 @@ int drawable urd 0x7f02004c
 int drawable urdaneta 0x7f02004d
 int drawable war 0x7f02004e
 int drawable world 0x7f02004f
-int id action_crime 0x7f09002f
-int id action_refresh 0x7f090030
-int id action_search 0x7f090031
-int id action_settings 0x7f09002e
+int id action_crime 0x7f090032
+int id action_refresh 0x7f090033
+int id action_search 0x7f090034
+int id action_settings 0x7f090031
 int id body 0x7f09001b
 int id book_now 0x7f090010
 int id btncall 0x7f09001e
@@ -156,8 +156,8 @@ int id buy_with_google 0x7f09000e
 int id call 0x7f090022
 int id classic 0x7f090011
 int id content_frame 0x7f090026
-int id drawer_icon 0x7f09002b
-int id drawer_itemName 0x7f09002c
+int id drawer_icon 0x7f09002e
+int id drawer_itemName 0x7f09002f
 int id drawer_layout 0x7f090025
 int id editText1 0x7f090028
 int id fb 0x7f090020
@@ -168,7 +168,7 @@ int id header 0x7f090017
 int id holo_dark 0x7f090005
 int id holo_light 0x7f090006
 int id hybrid 0x7f090004
-int id itemLayout 0x7f09002a
+int id itemLayout 0x7f09002d
 int id left_drawer 0x7f090027
 int id like 0x7f090023
 int id linear1 0x7f090016
@@ -178,6 +178,7 @@ int id linear4 0x7f09001c
 int id map 0x7f090029
 int id match_parent 0x7f09000c
 int id monochrome 0x7f090013
+int id myList 0x7f09002b
 int id none 0x7f090000
 int id normal 0x7f090001
 int id production 0x7f090007
@@ -185,10 +186,12 @@ int id progressBar 0x7f090015
 int id sandbox 0x7f090008
 int id satellite 0x7f090002
 int id selectionDetails 0x7f09000b
+int id spinner1 0x7f09002c
 int id strict_sandbox 0x7f090009
 int id terrain 0x7f090003
 int id text 0x7f090014
-int id textViewItem 0x7f09002d
+int id textView1 0x7f09002a
+int id textViewItem 0x7f090030
 int id title 0x7f090019
 int id twit 0x7f090021
 int id wrap_content 0x7f09000d

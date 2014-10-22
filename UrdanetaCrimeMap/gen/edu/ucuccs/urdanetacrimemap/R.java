@@ -461,10 +461,10 @@ containing a value of this type.
         public static final int world=0x7f02004f;
     }
     public static final class id {
-        public static final int action_crime=0x7f09002f;
-        public static final int action_refresh=0x7f090030;
-        public static final int action_search=0x7f090031;
-        public static final int action_settings=0x7f09002e;
+        public static final int action_crime=0x7f090032;
+        public static final int action_refresh=0x7f090033;
+        public static final int action_search=0x7f090034;
+        public static final int action_settings=0x7f090031;
         public static final int body=0x7f09001b;
         public static final int book_now=0x7f090010;
         public static final int btncall=0x7f09001e;
@@ -475,8 +475,8 @@ containing a value of this type.
         public static final int call=0x7f090022;
         public static final int classic=0x7f090011;
         public static final int content_frame=0x7f090026;
-        public static final int drawer_icon=0x7f09002b;
-        public static final int drawer_itemName=0x7f09002c;
+        public static final int drawer_icon=0x7f09002e;
+        public static final int drawer_itemName=0x7f09002f;
         public static final int drawer_layout=0x7f090025;
         public static final int editText1=0x7f090028;
         public static final int fb=0x7f090020;
@@ -487,7 +487,7 @@ containing a value of this type.
         public static final int holo_dark=0x7f090005;
         public static final int holo_light=0x7f090006;
         public static final int hybrid=0x7f090004;
-        public static final int itemLayout=0x7f09002a;
+        public static final int itemLayout=0x7f09002d;
         public static final int left_drawer=0x7f090027;
         public static final int like=0x7f090023;
         public static final int linear1=0x7f090016;
@@ -497,6 +497,7 @@ containing a value of this type.
         public static final int map=0x7f090029;
         public static final int match_parent=0x7f09000c;
         public static final int monochrome=0x7f090013;
+        public static final int myList=0x7f09002b;
         public static final int none=0x7f090000;
         public static final int normal=0x7f090001;
         public static final int production=0x7f090007;
@@ -504,10 +505,12 @@ containing a value of this type.
         public static final int sandbox=0x7f090008;
         public static final int satellite=0x7f090002;
         public static final int selectionDetails=0x7f09000b;
+        public static final int spinner1=0x7f09002c;
         public static final int strict_sandbox=0x7f090009;
         public static final int terrain=0x7f090003;
         public static final int text=0x7f090014;
-        public static final int textViewItem=0x7f09002d;
+        public static final int textView1=0x7f09002a;
+        public static final int textViewItem=0x7f090030;
         public static final int title=0x7f090019;
         public static final int twit=0x7f090021;
         public static final int wrap_content=0x7f09000d;
